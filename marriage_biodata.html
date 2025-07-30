@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Marriage Biodata Form</title>
+    <script>
+        function addEducationRow() {
+            const tableBody = document.getElementById('educationBody');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td><input type="text" name="education[degree][]" required></td>
+                <td><input type="text" name="education[institution][]" required></td>
+                <td><input type="text" name="education[year][]" required></td>
+                <td><button type="button" onclick="removeEducationRow(this)">Remove</button></td>
+            `;
+            tableBody.appendChild(newRow);
+        }
+        function removeEducationRow(button) {
+            button.closest('tr').remove();
+        }
+    </script>
+</head>
+<body>
+    <h1>Marriage Biodata</h1>
+    <form action="create.php" method="POST">
+        <label>Full Name:<br><input type="text" name="fullName" required></label><br><br>
+        <label>Father's Name:<br><input type="text" name="fatherName" required></label><br><br>
+        <label>Mother's Name:<br><input type="text" name="motherName" required></label><br><br>
+        <label>Date of Birth:<br><input type="date" name="dob" required></label><br><br>
+        <label>Gender:<br>
+            <input type="radio" name="gender" value="male" required> Male
+            <input type="radio" name="gender" value="female"> Female
+            <input type="radio" name="gender" value="other"> Other
+        </label><br><br>
+        <label>Nationality:<br><input type="text" name="nationality" required></label><br><br>
+        <label>Marital Status:<br>
+            <select name="maritalStatus" required>
+                <option value="">Select Status</option>
+                <option value="never_married">Never Married</option>
+                <option value="divorced">Divorced</option>
+                <option value="widowed">Widowed</option>
+            </select>
+        </label><br><br>
+        <label>Height (cm):<br><input type="number" name="height" required></label><br><br>
+        <label>Religion:<br><input type="text" name="religion" required></label><br><br>
+
+        <label>Education:</label>
+        <table border="1" id="educationTable">
+            <thead>
+                <tr><th>Degree</th><th>Institution</th><th>Year</th><th>Action</th></tr>
+            </thead>
+            <tbody id="educationBody">
+                <tr>
+                    <td><input type="text" name="education[degree][]" required></td>
+                    <td><input type="text" name="education[institution][]" required></td>
+                    <td><input type="text" name="education[year][]" required></td>
+                    <td><button type="button" onclick="addEducationRow()">Add</button></td>
+                </tr>
+            </tbody>
+        </table><br>
+
+        <label>Occupation:<br><input type="text" name="occupation" required></label><br><br>
+        <label>Email:<br><input type="email" name="email" required></label><br><br>
+        <label>Phone Number:<br><input type="tel" name="phone" required></label><br><br>
+
+        <label>Hobbies:<br>
+            <input type="checkbox" name="hobbies[]" value="reading"> Reading
+            <input type="checkbox" name="hobbies[]" value="traveling"> Traveling
+            <input type="checkbox" name="hobbies[]" value="cooking"> Cooking
+            <input type="checkbox" name="hobbies[]" value="sports"> Sports
+        </label><br><br>
+
+        <label>About Yourself:<br><textarea name="about" rows="5" required></textarea></label><br><br>
+
+        <button type="submit">Submit Biodata</button>
+    </form>
+</body>
+</html>
